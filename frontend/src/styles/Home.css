@@ -1,0 +1,33 @@
+.home-container {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    margin: 20px;
+  }
+  
+  .home-container h1 {
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .home-container p {
+    color: #666;
+    font-size: 1.2rem;
+  }
+  
+  @media (max-width: 600px) {
+    .home-container {
+      padding: 20px 10px;
+      margin: 10px;
+    }
+  
+    .home-container h1 {
+      font-size: 2rem;
+    }
+  
+    .home-container p {
+      font-size: 1rem;
+    }
+  }

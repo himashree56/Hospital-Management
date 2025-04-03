@@ -1,0 +1,54 @@
+.doctor-profile-container {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .doctor-profile-container h2 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .doctor-profile-container p {
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  .doctor-profile-container h3 {
+    color: #333;
+    margin-top: 20px;
+  }
+  
+  .doctor-profile-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .doctor-profile-container li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .doctor-profile-container a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  
+  .doctor-profile-container a:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 600px) {
+    .doctor-profile-container {
+      padding: 15px;
+      margin: 10px;
+    }
+  }

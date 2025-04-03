@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+nav {
+  background: #333;
+  padding: 1rem;
+}
+nav a, nav button {
+  color: white;
+  margin-right: 1rem;
+  text-decoration: none;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 2rem auto;
+}
+input, button {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+}

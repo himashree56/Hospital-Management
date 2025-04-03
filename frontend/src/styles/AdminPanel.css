@@ -1,0 +1,54 @@
+.admin-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-container h2,
+  .admin-container h3 {
+    color: #333;
+  }
+  
+  .admin-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .admin-container li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .admin-container button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .admin-container button:hover {
+    background-color: #218838;
+  }
+  
+  @media (max-width: 600px) {
+    .admin-container {
+      padding: 10px;
+    }
+  
+    .admin-container li {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .admin-container button {
+      margin-top: 5px;
+    }
+  }
