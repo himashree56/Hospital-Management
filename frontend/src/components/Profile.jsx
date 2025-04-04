@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import '../styles/Profile.css';
+import { API_BASE_URL } from '../config';
 
 const Profile = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -8,7 +9,7 @@ const Profile = () => {
 
   const handleUpdate = async () => {
     try {
-      const res = await fetch('process.env.BACKEND_URL/api/users/profile', {
+      const res = await fetch(`${API_BASE_URL}/api/users/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

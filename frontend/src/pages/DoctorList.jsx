@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import DoctorCard from '../components/DoctorCard';
 import AppointmentForm from '../components/AppointmentForm';
+import { API_BASE_URL } from '../config';
 
 function DoctorList() {
   const [doctors, setDoctors] = useState([]);
@@ -11,7 +12,7 @@ function DoctorList() {
     const fetchDoctors = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('process.env.BACKEND_URL/api/patient/doctors', {
+        const res = await axios.get(`${API_BASE_URL}/api/patient/doctors`, {
           headers: { 'x-auth-token': token },
         });
         console.log('Doctors fetched:', res.data); 

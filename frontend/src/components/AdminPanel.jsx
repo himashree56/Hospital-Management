@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/AdminPanel.css';
+import { API_BASE_URL } from '../config';
 
 const AdminPanel = () => {
   const [doctors, setDoctors] = useState([]);
   const [users, setUsers] = useState([]);
   const [appointments, setAppointments] = useState([]);
-
+  
   useEffect(() => {
-    fetch('process.env.BACKEND_URL/api/doctors/pending', {
+    fetch(`${API_BASE_URL}/api/doctors/pending`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
     })
       .then((res) => res.json())
       .then((data) => setDoctors(data));
 
-    fetch('process.env.BACKEND_URL/api/users', {
+    fetch(`${API_BASE_URL}/api/users`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
     })
       .then((res) => res.json())
       .then((data) => setUsers(data));
 
-    fetch('process.env.BACKEND_URL/api/appointments/all', {
+    fetch(`${API_BASE_URL}/api/appointments/all`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
     })
       .then((res) => res.json())
@@ -28,7 +29,7 @@ const AdminPanel = () => {
 
   const handleApprove = async (id) => {
     try {
-      const res = await fetch(`process.env.BACKEND_URL/api/doctors/approve/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/doctors/approve/${id}`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
       });

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/TimeSlotManager.css';
+import { API_BASE_URL } from '../config';
 
 const TimeSlotManager = () => {
   const [date, setDate] = useState('');
@@ -8,7 +9,7 @@ const TimeSlotManager = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('process.env.BACKEND_URL/api/doctors/availability', {
+      const res = await fetch(`${API_BASE_URL}/api/doctors/availability`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

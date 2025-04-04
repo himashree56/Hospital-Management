@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { API_BASE_URL } from '../config';
 
 function AppointmentForm({ doctor }) {
   const { user } = useAuth();
@@ -23,7 +24,7 @@ function AppointmentForm({ doctor }) {
       setMessage('');
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`process.env.BACKEND_URL/api/patient/timeslots/${doctor._id}`, {
+        const res = await axios.get(`${API_BASE_URL}/api/patient/timeslots/${doctor._id}`, {
           headers: { 'x-auth-token': token },
         });
         console.log('Time slots response:', res.data);
@@ -58,7 +59,7 @@ function AppointmentForm({ doctor }) {
     try {
       const token = localStorage.getItem('token');
       const res = await axios.post(
-        'process.env.BACKEND_URL/api/patient/book',
+        `${API_BASE_URL}/api/patient/book`,
         { timeSlotId: selectedTimeSlot },
         { headers: { 'x-auth-token': token } }
       );

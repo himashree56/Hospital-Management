@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
+
 const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -11,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       axios.defaults.headers.common['x-auth-token'] = token;
       axios
-        .get('process.env.BACKEND_URL/api/auth/me')
+        .get(`${API_BASE_URL}/api/auth/me`)
         .then((res) => setUser(res.data))
         .catch(() => localStorage.removeItem('token'))
         .finally(() => setLoading(false));
@@ -21,19 +23,19 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    const res = await axios.post('process.env.BACKEND_URL/api/auth/login', { email, password });
+    const res = await axios.post(`${API_BASE_URL}/api/auth/login`, { email, password });
     localStorage.setItem('token', res.data.token);
     axios.defaults.headers.common['x-auth-token'] = res.data.token;
-    const userData = await axios.get('process.env.BACKEND_URL/api/auth/me');
+    const userData = await axios.get(`${API_BASE_URL}/api/auth/me`);
     setUser(userData.data);
     return userData.data.role; 
   };
 
   const register = async (name, email, password, role) => {
-    const res = await axios.post('process.env.BACKEND_URL/api/auth/register', { name, email, password, role });
+    const res = await axios.post(`${API_BASE_URL}/api/auth/register`, { name, email, password, role });
     localStorage.setItem('token', res.data.token);
     axios.defaults.headers.common['x-auth-token'] = res.data.token;
-    const userData = await axios.get('process.env.BACKEND_URL/api/auth/me');
+    const userData = await axios.get(`${API_BASE_URL}/api/auth/me`);
     setUser(userData.data);
     return userData.data.role;
   };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import '../styles/DoctorProfile.css';
+import { API_BASE_URL } from '../config';
 
 const DoctorProfile = () => {
   const { id } = useParams();
@@ -8,12 +9,12 @@ const DoctorProfile = () => {
   const [availability, setAvailability] = useState([]);
 
   useEffect(() => {
-    fetch(`process.env.BACKEND_URL/api/doctors/${id}`)
+    fetch(`${API_BASE_URL}/api/doctors/${id}`)
       .then((res) => res.json())
       .then((data) => setDoctor(data))
       .catch((err) => console.error('Error fetching doctor:', err));
 
-    fetch(`process.env.BACKEND_URL/api/doctors/${id}/availability`)
+    fetch(`${API_BASE_URL}/api/doctors/${id}/availability`)
       .then((res) => res.json())
       .then((data) => setAvailability(data))
       .catch((err) => console.error('Error fetching availability:', err));

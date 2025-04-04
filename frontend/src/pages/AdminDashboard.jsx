@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
+import { API_BASE_URL } from '../config';
+
 
 function AdminDashboard() {
   const { user } = useContext(AuthContext);
@@ -9,13 +11,13 @@ function AdminDashboard() {
 
   useEffect(() => {
     if (user?.role === 'admin') {
-      axios.get('process.env.BACKEND_URL/api/admin/doctors').then(res => setDoctors(res.data));
-      axios.get('process.env.BACKEND_URL/api/admin/appointments').then(res => setAppointments(res.data));
+      axios.get(`${API_BASE_URL}/api/admin/doctors`).then(res => setDoctors(res.data));
+      axios.get(`${API_BASE_URL}/api/admin/appointments`).then(res => setAppointments(res.data));
     }
   }, [user]);
 
   const handleApprove = async (id) => {
-    await axios.put(`process.env.BACKEND_URL/api/admin/approve/${id}`);
+    await axios.put(`${API_BASE_URL}/api/admin/approve/${id}`);
     setDoctors(doctors.map(d => d._id === id ? { ...d, isApproved: true } : d));
   };
 

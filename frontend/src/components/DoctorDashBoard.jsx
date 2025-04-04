@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/DoctorDashboard.css';
+import { API_BASE_URL } from '../config';
 
 const DoctorDashboard = () => {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
-    fetch('process.env.BACKEND_URL/api/doctors/appointments', {
+    fetch(`${API_BASE_URL}/api/doctors/appointments`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
     })
       .then((res) => res.json())

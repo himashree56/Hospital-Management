@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '../config';
 
 const DoctorList = () => {
   const [doctors, setDoctors] = useState([]);
@@ -6,8 +7,8 @@ const DoctorList = () => {
 
   useEffect(() => {
     const url = specialization
-      ? `process.env.BACKEND_URL/api/doctors?specialization=${specialization}`
-      : 'process.env.BACKEND_URL/api/doctors';
+      ? `${API_BASE_URL}/api/doctors?specialization=${specialization}`
+      : `${API_BASE_URL}/api/doctors`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setDoctors(data))

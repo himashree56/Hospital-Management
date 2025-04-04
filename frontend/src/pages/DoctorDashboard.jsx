@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
+import { API_BASE_URL } from '../config';
+
 
 function DoctorDashboard() {
   const { user } = useContext(AuthContext);
@@ -12,14 +14,14 @@ function DoctorDashboard() {
 
   useEffect(() => {
     if (user?.role === 'doctor') {
-      axios.get('process.env.BACKEND_URL/api/doctor/appointments').then(res => setAppointments(res.data));
-      axios.get('process.env.BACKEND_URL/api/doctor/timeslots').then(res => setTimeSlots(res.data));
+      axios.get(`${API_BASE_URL}/api/doctor/appointments`).then(res => setAppointments(res.data));
+      axios.get(`${API_BASE_URL}/api/doctor/timeslots`).then(res => setTimeSlots(res.data));
     }
   }, [user]);
 
   const handleAddTimeSlot = async (e) => {
     e.preventDefault();
-    const res = await axios.post('process.env.BACKEND_URL/api/doctor/timeslots', { date, startTime, endTime });
+    const res = await axios.post(`${API_BASE_URL}/api/doctor/timeslots`, { date, startTime, endTime });
     setTimeSlots([...timeSlots, res.data]);
   };
 

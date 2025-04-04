@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
+import { API_BASE_URL } from '../config';
 
 function Profile() {
   const { user } = useContext(AuthContext);
@@ -9,7 +10,7 @@ function Profile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('process.env.BACKEND_URL/api/doctor/profile', { specialization, bio });
+    await axios.post(`${API_BASE_URL}/api/doctor/profile`, { specialization, bio });
     alert('Profile updated');
   };
 

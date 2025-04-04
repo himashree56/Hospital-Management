@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
+import { API_BASE_URL } from '../config';
 
 function PatientDashboard() {
   const { user } = useContext(AuthContext);
@@ -8,13 +9,13 @@ function PatientDashboard() {
 
   useEffect(() => {
     if (user?.role === 'patient') {
-      axios.get('process.env.BACKEND_URL/api/patient/appointments')
+      axios.get(`${API_BASE_URL}/api/patient/appointments`)
         .then(res => setAppointments(res.data));
     }
   }, [user]);
 
   const handleCancel = async (id) => {
-    await axios.put(`process.env.BACKEND_URL/api/patient/cancel/${id}`);
+    await axios.put(`${API_BASE_URL}/api/patient/cancel/${id}`);
     setAppointments(appointments.map(a => a._id === id ? { ...a, status: 'cancelled' } : a));
   };
 
