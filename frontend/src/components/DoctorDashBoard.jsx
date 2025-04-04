@@ -5,7 +5,7 @@ const DoctorDashboard = () => {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/doctors/appointments', {
+    fetch('process.env.BACKEND_URL/api/doctors/appointments', {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
     })
       .then((res) => res.json())

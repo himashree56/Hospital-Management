@@ -8,7 +8,7 @@ const Profile = () => {
 
   const handleUpdate = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/users/profile', {
+      const res = await fetch('process.env.BACKEND_URL/api/users/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

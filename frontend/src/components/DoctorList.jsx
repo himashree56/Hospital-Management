@@ -6,8 +6,8 @@ const DoctorList = () => {
 
   useEffect(() => {
     const url = specialization
-      ? `http://localhost:5000/api/doctors?specialization=${specialization}`
-      : 'http://localhost:5000/api/doctors';
+      ? `process.env.BACKEND_URL/api/doctors?specialization=${specialization}`
+      : 'process.env.BACKEND_URL/api/doctors';
     fetch(url)
       .then((res) => res.json())
       .then((data) => setDoctors(data))

@@ -8,13 +8,13 @@ function PatientDashboard() {
 
   useEffect(() => {
     if (user?.role === 'patient') {
-      axios.get('http://localhost:5000/api/patient/appointments')
+      axios.get('process.env.BACKEND_URL/api/patient/appointments')
         .then(res => setAppointments(res.data));
     }
   }, [user]);
 
   const handleCancel = async (id) => {
-    await axios.put(`http://localhost:5000/api/patient/cancel/${id}`);
+    await axios.put(`process.env.BACKEND_URL/api/patient/cancel/${id}`);
     setAppointments(appointments.map(a => a._id === id ? { ...a, status: 'cancelled' } : a));
   };
 

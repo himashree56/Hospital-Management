@@ -9,7 +9,7 @@ function Profile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('http://localhost:5000/api/doctor/profile', { specialization, bio });
+    await axios.post('process.env.BACKEND_URL/api/doctor/profile', { specialization, bio });
     alert('Profile updated');
   };
 

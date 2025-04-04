@@ -7,19 +7,19 @@ const AdminPanel = () => {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/doctors/pending', {
+    fetch('process.env.BACKEND_URL/api/doctors/pending', {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
     })
       .then((res) => res.json())
       .then((data) => setDoctors(data));
 
-    fetch('http://localhost:5000/api/users', {
+    fetch('process.env.BACKEND_URL/api/users', {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
     })
       .then((res) => res.json())
       .then((data) => setUsers(data));
 
-    fetch('http://localhost:5000/api/appointments/all', {
+    fetch('process.env.BACKEND_URL/api/appointments/all', {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
     })
       .then((res) => res.json())
@@ -28,7 +28,7 @@ const AdminPanel = () => {
 
   const handleApprove = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/doctors/approve/${id}`, {
+      const res = await fetch(`process.env.BACKEND_URL/api/doctors/approve/${id}`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
       });

@@ -9,13 +9,13 @@ function AdminDashboard() {
 
   useEffect(() => {
     if (user?.role === 'admin') {
-      axios.get('http://localhost:5000/api/admin/doctors').then(res => setDoctors(res.data));
-      axios.get('http://localhost:5000/api/admin/appointments').then(res => setAppointments(res.data));
+      axios.get('process.env.BACKEND_URL/api/admin/doctors').then(res => setDoctors(res.data));
+      axios.get('process.env.BACKEND_URL/api/admin/appointments').then(res => setAppointments(res.data));
     }
   }, [user]);
 
   const handleApprove = async (id) => {
-    await axios.put(`http://localhost:5000/api/admin/approve/${id}`);
+    await axios.put(`process.env.BACKEND_URL/api/admin/approve/${id}`);
     setDoctors(doctors.map(d => d._id === id ? { ...d, isApproved: true } : d));
   };
 

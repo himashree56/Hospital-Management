@@ -8,7 +8,7 @@ const TimeSlotManager = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/doctors/availability', {
+      const res = await fetch('process.env.BACKEND_URL/api/doctors/availability', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

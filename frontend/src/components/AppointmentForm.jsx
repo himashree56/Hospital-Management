@@ -23,7 +23,7 @@ function AppointmentForm({ doctor }) {
       setMessage('');
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`http://localhost:5000/api/patient/timeslots/${doctor._id}`, {
+        const res = await axios.get(`process.env.BACKEND_URL/api/patient/timeslots/${doctor._id}`, {
           headers: { 'x-auth-token': token },
         });
         console.log('Time slots response:', res.data);
@@ -58,7 +58,7 @@ function AppointmentForm({ doctor }) {
     try {
       const token = localStorage.getItem('token');
       const res = await axios.post(
-        'http://localhost:5000/api/patient/book',
+        'process.env.BACKEND_URL/api/patient/book',
         { timeSlotId: selectedTimeSlot },
         { headers: { 'x-auth-token': token } }
       );

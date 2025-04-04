@@ -8,7 +8,7 @@ const AppointmentBooking = () => {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/appointments', {
+    fetch('process.env.BACKEND_URL/api/appointments', {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
     })
       .then((res) => res.json())
@@ -19,7 +19,7 @@ const AppointmentBooking = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/appointments', {
+      const res = await fetch('process.env.BACKEND_URL/api/appointments', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const AppointmentBooking = () => {
 
   const handleCancel = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/appointments/${id}`, {
+      const res = await fetch(`process.env.BACKEND_URL/api/appointments/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
       });

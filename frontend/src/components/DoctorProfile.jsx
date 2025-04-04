@@ -8,12 +8,12 @@ const DoctorProfile = () => {
   const [availability, setAvailability] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/doctors/${id}`)
+    fetch(`process.env.BACKEND_URL/api/doctors/${id}`)
       .then((res) => res.json())
       .then((data) => setDoctor(data))
       .catch((err) => console.error('Error fetching doctor:', err));
 
-    fetch(`http://localhost:5000/api/doctors/${id}/availability`)
+    fetch(`process.env.BACKEND_URL/api/doctors/${id}/availability`)
       .then((res) => res.json())
       .then((data) => setAvailability(data))
       .catch((err) => console.error('Error fetching availability:', err));

@@ -11,7 +11,7 @@ function DoctorList() {
     const fetchDoctors = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/patient/doctors', {
+        const res = await axios.get('process.env.BACKEND_URL/api/patient/doctors', {
           headers: { 'x-auth-token': token },
         });
         console.log('Doctors fetched:', res.data); 
