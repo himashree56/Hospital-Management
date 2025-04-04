@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 const AppointmentBooking = () => {
   const { user } = useContext(AuthContext);
   const { doctorId } = useParams();
-  const [doctor, setDoctor] = useState('');
+  const [doctor, setDoctor] = useState(null);
   const [date, setDate] = useState('');
   const [appointments, setAppointments] = useState([]);
   const [timeSlots, setTimeSlots] = useState([]);
@@ -95,6 +95,7 @@ const AppointmentBooking = () => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
         body: JSON.stringify({
+          userId: user.Id,
           doctorId: doctor._id,
           date,
           timeSlot: selectedTimeSlot,
@@ -109,6 +110,7 @@ const AppointmentBooking = () => {
         setTimeSlots([]);
       } else {
         alert(data.message || 'Failed to book appointment.');
+        setError(data.message || 'Failed to book appointment.');
       }
     } catch (error) {
       console.error('Booking failed', error);
