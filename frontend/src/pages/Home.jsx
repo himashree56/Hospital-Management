@@ -118,7 +118,7 @@ function Home() {
           </div>
         </div>
         <div style={styles.footerBottom}>
-          <p>&copy; © 2025 MedCorx Private Limited. All Rights Reserved.</p>
+          <p>&copy; 2025 MedCorx Private Limited. All Rights Reserved.</p>
         </div>
       </footer>
     </div>
