@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import cors from 'cors';
 import { config } from 'dotenv';
 import connectDB from './config/db.js';
@@ -21,5 +22,11 @@ app.use('/api/patient', patientRoutes);
 app.use('/api/doctor', doctorRoutes);
 app.use('/api/admin', adminRoutes);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const MONGO_URI = process.env.MONGO_URI || `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_CLUSTER}.64dgrv8.mongodb.net/?retryWrites=true&w=majority&appName=${process.env.MONGO_DBNAME}`;
+// MongoDB connection
+mongoose.connect(MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+
+export default app;
