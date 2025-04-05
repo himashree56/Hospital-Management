@@ -24,7 +24,7 @@ function AppointmentForm({ doctor }) {
       setMessage('');
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`${API_BASE_URL}/api/patient/timeslots/${doctor._id}`, {
+        const res = await axios.get(`${API_BASE_URL}/api/patient/timeslots/${doctor.userId}`, {
           headers: { 'x-auth-token': token },
         });
         console.log('Time slots response:', res.data);
@@ -49,8 +49,8 @@ function AppointmentForm({ doctor }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!selectedTimeSlot) {
-      setMessage('Please select a time slot');
+    if (!selectedTimeSlot || !selectedDate) {
+      setMessage('Please select a date and time slot');
       return;
     }
 
@@ -58,22 +58,35 @@ function AppointmentForm({ doctor }) {
     setMessage('');
     try {
       const token = localStorage.getItem('token');
+      // const selectedSlot = timeSlots.find((slot) => slot._id === selectedTimeSlot);
+      // if (!selectedSlot) {
+      //   setMessage('Selected time slot not found');
+      //   return;
+      // }
+
       const res = await axios.post(
         `${API_BASE_URL}/api/patient/book`,
-        { timeSlotId: selectedTimeSlot },
+        {
+          patientId: user.id,
+          doctorId: doctor._id,
+          doctorName: doctor.name,
+          date: selectedDate.toISOString().split('T')[0], // Format as YYYY-MM-DD
+          timeSlotId: `${selectedTimeSlot}`, // Use the full time slot string
+        },
         { headers: { 'x-auth-token': token } }
       );
       setMessage(`Appointment booked successfully with ${doctor.name}`);
       setSelectedTimeSlot('');
-      setTimeSlots(timeSlots.filter((slot) => slot._id !== selectedTimeSlot));
       setSelectedDate(null);
+      setTimeSlots(timeSlots.filter((slot) => slot._id !== selectedTimeSlot));
     } catch (err) {
       console.error('Error booking appointment:', err.response?.data || err.message);
-      setMessage(err.response?.data?.msg || 'Failed to book appointment');
+      setMessage(err.response?.data?.message || 'Failed to book appointment');
     } finally {
       setLoading(false);
     }
   };
+
   const filteredTimeSlots = selectedDate
     ? timeSlots.filter((slot) => {
         const slotDate = new Date(slot.date).toDateString();

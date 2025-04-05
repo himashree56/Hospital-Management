@@ -15,7 +15,7 @@ function DoctorDashboard() {
   useEffect(() => {
     if (user?.role === 'doctor') {
       axios.get(`${API_BASE_URL}/api/doctor/appointments`).then(res => setAppointments(res.data));
-      axios.get(`${API_BASE_URL}/api/doctor/timeslots`).then(res => setTimeSlots(res.data));
+      axios.get(`${API_BASE_URL}/api/doctor/timeslots?doctorId=${user?._id}`).then(res => setTimeSlots(res.data));
     }
   }, [user]);
 
